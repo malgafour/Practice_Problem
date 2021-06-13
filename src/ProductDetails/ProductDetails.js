@@ -1,17 +1,18 @@
 import React from 'react';
 import classees from './ProductDetails.module.css';
 
-const ProductDetails = (props) =>{
+const ProductDetails = (props) => {
     const colorOptions = props.data.colorOptions.map((item , pos) => {
 
         const classAr = [classees.ProductImage];
-        if(pos === 0){
+        if(pos === props.currentPreviewImagePos){
            classAr.push(classees.SelectedProductImage)
         }
         return(
-            <img key={pos} className={classAr.join(' ')} src={item.imageUrl} alt={item.styleName} onClick={()=> props.onColorOptionClick(pos)}/>
+            <img key={pos} className={classAr.join(' ')} src={item.imageUrl} 
+            alt={item.styleName} onClick={()=> props.onColorOptionClick(pos)} />
         );
-    })
+        })
 
 
     const featureList = props.data.featureList.map((item , pos) => {

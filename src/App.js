@@ -1,23 +1,20 @@
  import React , { Component } from 'react';
-
  import classees from './App.module.css';
  import ProductPreview from './ProductPreview/ProductPreview';
  import ProductDetails from './ProductDetails/ProductDetails';
-import Topbar from './Topbar/Topbar';
+ import Topbar from './Topbar/Topbar';
  import ProductData from './Utils/productData';
 
  
 class App extends Component {
   state = {
     productData : ProductData,
-    currentPreviewImage :'https://imgur.com/iOeUBV7.png',
+    currentPreviewImagePos :0 ,
     showHeartBeatSection : false,
    }
 
     onColorOptionClick = (pos) => {
-     const updatedPreviewImage = this.state.productData.colorOptions[pos].imageUrl;
-     console.log(updatedPreviewImage);
-     this.state({currentPreviewImage:updatedPreviewImage});
+     this.setState({currentPreviewImagePos:pos});
    }
 
   render(){
@@ -26,12 +23,13 @@ class App extends Component {
            <Topbar />  
          <div className={classees.MainContainer}>
            <div className={classees.ProductPreview}>
-                <ProductPreview currentPreviewImage={this.state.currentPreviewImage} showHeartBeatSection={this.state.showHeartBeatSection}  />
+                <ProductPreview currentPreviewImage={this.state.productData.colorOptions
+                  [this.state.currentPreviewImagePos].imageUrl}
+                   showHeartBeatSection={this.state.showHeartBeatSection} />
            </div>
             <div className={classees.ProductData}>
-                  <ProductDetails data={this.state.productData} onColorOptionClick={this.onColorOptionClick} />
-            </div>       
-         
+                  <ProductDetails data={this.state.productData} onColorOptionClick={this.onColorOptionClick} currentPreviewImagePos={this.state.currentPreviewImagePos} />
+            </div>
          </div>
       </div>
     );
