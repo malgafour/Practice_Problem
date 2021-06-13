@@ -17,18 +17,30 @@ class App extends Component {
      this.setState({currentPreviewImagePos:pos});
    }
 
+   onFeatureItemClick =(pos) =>{
+     let updatedState = false;
+     if(pos === 1){
+       updatedState = true;
+     }
+     this.setState({showHeartBeatSection : updatedState})
+   }
+
   render(){
     return (
       <div className="App"> 
            <Topbar />  
          <div className={classees.MainContainer}>
            <div className={classees.ProductPreview}>
-                <ProductPreview currentPreviewImage={this.state.productData.colorOptions
-                  [this.state.currentPreviewImagePos].imageUrl}
+                <ProductPreview 
+                currentPreviewImage={this.state.productData.colorOptions[this.state.currentPreviewImagePos].imageUrl}
                    showHeartBeatSection={this.state.showHeartBeatSection} />
            </div>
             <div className={classees.ProductData}>
-                  <ProductDetails data={this.state.productData} onColorOptionClick={this.onColorOptionClick} currentPreviewImagePos={this.state.currentPreviewImagePos} />
+                  <ProductDetails 
+                  data={this.state.productData}
+                   onColorOptionClick={this.onColorOptionClick}
+                    currentPreviewImagePos={this.state.currentPreviewImagePos}
+                    onFeatureItemClick = {this.onFeatureItemClick} />
             </div>
          </div>
       </div>

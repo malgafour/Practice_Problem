@@ -22,7 +22,7 @@ const ProductDetails = (props) => {
             classAr.push(classees.SelectedFeatureItem);
         }
         return(
-            <button key={pos} className={classAr.join(' ')}>{item}</button>
+            <button onClick={() => props.onFeatureItemClick(pos)} key={pos} className={classAr.join(' ')}>{item}</button>
         )
     })
     return (
