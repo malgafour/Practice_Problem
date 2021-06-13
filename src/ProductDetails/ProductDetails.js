@@ -17,10 +17,11 @@ const ProductDetails = (props) => {
 
     const featureList = props.data.featureList.map((item , pos) => {
         const classAr = [classees.FeatureItem]
-        if(pos === 0)
+        if(pos ===  props.currentSelectedFeature)
         {
             classAr.push(classees.SelectedFeatureItem);
         }
+         
         return(
             <button onClick={() => props.onFeatureItemClick(pos)} key={pos} className={classAr.join(' ')}>{item}</button>
         )
